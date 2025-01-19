@@ -1,0 +1,74 @@
+@keyframes pixel-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pixel-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #8b5cf6;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 4px solid #7c3aed;
+  box-shadow: 4px 4px 0 #4c1d95;
+  transition: all 0.1s ease;
+}
+
+.pixel-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #4c1d95;
+}
+
+.pixel-card {
+  background-color: #1f2937;
+  border: 4px solid #4b5563;
+  box-shadow: 8px 8px 0 #111827;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.pixel-input {
+  background-color: #374151;
+  border: 2px solid #4b5563;
+  color: white;
+  padding: 8px;
+  font-family: inherit;
+}
+
+.pixel-checkbox {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background-color: #374151;
+  border: 2px solid #4b5563;
+  cursor: pointer;
+}
+
+.pixel-checkbox:checked {
+  background-color: #8b5cf6;
+  border-color: #7c3aed;
+}
+
+.pixel-checkbox:checked::after {
+  content: "✓";
+  display: block;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.pixel-title {
+  font-size: 36px;
+  color: #8b5cf6;
+  text-shadow: 2px 2px 0 #4c1d95;
+  margin-bottom: 16px;
+  animation: pixel-blink 2s infinite;
+}
+
