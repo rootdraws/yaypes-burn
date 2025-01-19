@@ -1,6 +1,7 @@
 import localFont from 'next/font/local'
-import { Providers } from './providers'
+import { Providers } from '../providers'
 import Header from './components/Header'
+import React from 'react'
 
 const pixelFont = localFont({ src: './fonts/pixel.woff2' })
 

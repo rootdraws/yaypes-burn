@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import React, { useState } from 'react'
+import { useAccount, useReadContract, useWriteContract, useSimulateContract } from 'wagmi'
 import '../styles/pixel-theme.css'
 
 const CONTRACT_ADDRESS = '0x...' // Replace with your actual contract address
@@ -11,21 +11,27 @@ export default function ClaimPage() {
   const [tokenId, setTokenId] = useState('')
   const { address } = useAccount()
 
-  const { data: claimableAmount } = useContractRead({
+  const { data: claimableAmount } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
     functionName: 'claimableAmount',
     args: [address, tokenId],
-  })
+  }) as { data: bigint }
 
-  const { config } = usePrepareContractWrite({
+  const { data: simulateData } = useSimulateContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
     functionName: 'claim',
     args: [tokenId],
   })
 
-  const { write: claim, isLoading, isSuccess } = useContractWrite(config)
+  const { writeContract, isPending, isSuccess } = useWriteContract()
+
+  const handleClaim = async () => {
+    if (simulateData?.request) {
+      await writeContract(simulateData.request)
+    }
+  }
 
   return (
     <div className="pixel-card">
@@ -40,13 +46,13 @@ export default function ClaimPage() {
           className="pixel-input w-full"
         />
       </div>
-      <p className="mb-4">Claimable amount: {claimableAmount?.toString() || '0'} $YAY</p>
+      <p className="mb-4">Claimable amount: {claimableAmount ? claimableAmount.toString() : '0'} $YAY</p>
       <button 
-        onClick={() => claim?.()} 
-        disabled={!claim || isLoading}
+        onClick={handleClaim}
+        disabled={!simulateData?.request || isPending}
         className="pixel-button w-full"
       >
-        {isLoading ? 'Claiming...' : 'Claim $YAY'}
+        {isPending ? 'Claiming...' : 'Claim $YAY'}
       </button>
       {isSuccess && <p className="mt-4 text-green-400">Claim successful!</p>}
     </div>

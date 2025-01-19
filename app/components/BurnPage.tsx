@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import React, { useState } from 'react'
+import { useAccount, useReadContract, useWriteContract, useSimulateContract } from 'wagmi'
 import TransactionSequencer from './TransactionSequencer'
 import '../styles/pixel-theme.css'
 
@@ -15,26 +15,26 @@ export default function BurnPage() {
   const [showSequencer, setShowSequencer] = useState(false)
   const { address } = useAccount()
 
-  const { data: ownedNFTs } = useContractRead({
+  const { data: ownedNFTs } = useReadContract({
     address: NFT_CONTRACT_ADDRESS,
     abi: NFT_CONTRACT_ABI,
     functionName: 'getOwnedNFTs',
     args: [address],
-  })
+  }) as { data: number[] }
 
-  const { config: putNFTOnAltarConfig } = usePrepareContractWrite({
+  const { data: simulationData } = useSimulateContract({
     address: YAY_CONTRACT_ADDRESS,
     abi: YAY_CONTRACT_ABI,
     functionName: 'putNFTOnAltar',
     args: [selectedNFTs],
   })
 
-  const { write: putNFTOnAltar } = useContractWrite(putNFTOnAltarConfig)
+  const { writeContract } = useWriteContract()
 
   const handleBurn = async () => {
-    if (putNFTOnAltar) {
+    if (simulationData?.request) {
       setShowSequencer(true)
-      await putNFTOnAltar()
+      await writeContract(simulationData.request)
     }
   }
 

@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useContractWrite, usePrepareContractWrite } from 'wagmi'
+import React, { useState, useEffect } from 'react'
+import { useWriteContract, useSimulateContract } from 'wagmi'
 import '../styles/pixel-theme.css'
 
-const NFT_CONTRACT_ADDRESS = '0x...' // Replace with your actual NFT contract address
+const NFT_CONTRACT_ADDRESS = '0x...' as `0x${string}` // Replace with your actual NFT contract address
 const NFT_CONTRACT_ABI = [] // Replace with your actual NFT contract ABI
-const YAY_CONTRACT_ADDRESS = '0x...' // Replace with your actual YAY token contract address
+const YAY_CONTRACT_ADDRESS = '0x...' as `0x${string}` // Replace with your actual YAY token contract address
 const YAY_CONTRACT_ABI = [] // Replace with your actual YAY token contract ABI
 
 interface TransactionSequencerProps {
@@ -25,14 +25,14 @@ export default function TransactionSequencer({ selectedNFTs }: TransactionSequen
     { name: 'Claim Reward', contract: YAY_CONTRACT_ADDRESS, abi: YAY_CONTRACT_ABI, functionName: 'claimReward', args: [] },
   ]
 
-  const { config } = usePrepareContractWrite({
-    address: steps[currentStep].contract,
+  const { data: simulateData } = useSimulateContract({
+    address: steps[currentStep].contract as `0x${string}`,
     abi: steps[currentStep].abi,
     functionName: steps[currentStep].functionName,
     args: steps[currentStep].args,
   })
 
-  const { write, isLoading, isSuccess } = useContractWrite(config)
+  const { writeContract, isPending, isSuccess } = useWriteContract()
 
   useEffect(() => {
     if (isSuccess && currentStep < steps.length - 1) {
@@ -66,11 +66,11 @@ export default function TransactionSequencer({ selectedNFTs }: TransactionSequen
         </div>
         {currentStep < steps.length && (
           <button 
-            onClick={() => write?.()} 
-            disabled={!write || isLoading}
+            onClick={() => simulateData && writeContract(simulateData.request)} 
+            disabled={!simulateData || isPending}
             className="pixel-button w-full mt-4"
           >
-            {isLoading ? 'Processing...' : `Execute ${steps[currentStep].name}`}
+            {isPending ? 'Processing...' : `Execute ${steps[currentStep].name}`}
           </button>
         )}
       </div>

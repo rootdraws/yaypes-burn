@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import React, { useState } from 'react'
+import { useAccount, useReadContract, useWriteContract } from 'wagmi'
 import '../styles/pixel-theme.css'
 
 const DAO_CONTRACT_ADDRESS = '0x...' // Replace with your actual DAO contract address
@@ -11,24 +11,27 @@ export default function DAOPage() {
   const [isNFTHolder, setIsNFTHolder] = useState(false)
   const { address } = useAccount()
 
-  const { data: isMember } = useContractRead({
+  const { data: isMember } = useReadContract({
     address: DAO_CONTRACT_ADDRESS,
     abi: DAO_CONTRACT_ABI,
     functionName: 'isMember',
     args: [address],
   })
 
-  const { config } = usePrepareContractWrite({
-    address: DAO_CONTRACT_ADDRESS,
-    abi: DAO_CONTRACT_ABI,
-    functionName: 'joinDAO',
-    value: BigInt(100000000000000000), // 0.1 ETH in wei
-  })
-
-  const { write: joinDAO, isLoading, isSuccess } = useContractWrite(config)
+  const { writeContract, status, isSuccess } = useWriteContract()
 
   const checkNFTHolding = () => {
     setIsNFTHolder(true)
+  }
+
+  const handleJoinDAO = () => {
+    writeContract({
+      address: DAO_CONTRACT_ADDRESS,
+      abi: DAO_CONTRACT_ABI,
+      functionName: 'joinDAO',
+      args: [],
+      value: BigInt(100000000000000000), // 0.1 ETH in wei
+    })
   }
 
   return (
@@ -50,11 +53,11 @@ export default function DAOPage() {
           </button>
           {isNFTHolder && (
             <button 
-              onClick={() => joinDAO?.()} 
-              disabled={!joinDAO || isLoading}
+              onClick={handleJoinDAO} 
+              disabled={status === 'pending'}
               className="pixel-button w-full"
             >
-              {isLoading ? 'Joining...' : 'Join DAO (0.1 ETH)'}
+              {status === 'pending' ? 'Joining...' : 'Join DAO (0.1 ETH)'}
             </button>
           )}
         </>

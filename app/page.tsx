@@ -1,3 +1,4 @@
+import React from 'react'
 import ClaimPage from './components/ClaimPage'
 import '../styles/pixel-theme.css'
 

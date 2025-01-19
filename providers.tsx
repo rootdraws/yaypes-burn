@@ -1,32 +1,29 @@
 'use client'
 
+import React from 'react'
 import '@rainbow-me/rainbowkit/styles.css'
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { WagmiConfig, createConfig, http } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
-import { publicProvider } from 'wagmi/providers/public'
 
-const { chains, publicClient } = configureChains(
-  [mainnet],
-  [publicProvider()]
-)
+const projectId = 'YOUR_PROJECT_ID'
 
-const { connectors } = getDefaultWallets({
+const { wallets } = getDefaultWallets({
   appName: 'NFT Collection Web3',
-  projectId: 'YOUR_PROJECT_ID',
-  chains
+  projectId,
 })
 
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient
+const config = createConfig({
+  chains: [mainnet],
+  transports: {
+    [mainnet.id]: http()
+  }
 })
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>
+    <WagmiConfig config={config}>
+      <RainbowKitProvider appInfo={{ appName: 'NFT Collection Web3' }}>
         {children}
       </RainbowKitProvider>
     </WagmiConfig>

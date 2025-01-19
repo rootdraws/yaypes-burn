@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/pixel-theme.css'
 
 export default function Discord() {
