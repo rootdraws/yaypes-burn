@@ -13,7 +13,7 @@ export default function ClaimPage() {
   const tabs = [
     {
       id: 'claim',
-      label: 'CLAIM $YAY',
+      label: '🟡 $YAY CLAIM',
       content: (
         <div>
           <h2>Claim $YAY AIRDROP</h2>
@@ -23,7 +23,7 @@ export default function ClaimPage() {
     },
     {
       id: 'burn',
-      label: 'BURN YAYPES',
+      label: '🔥 BURN YAYPES',
       content: (
         <div>
           <h2>Burn YAYPES, GET $YAY</h2>
@@ -33,7 +33,7 @@ export default function ClaimPage() {
     },
     {
       id: 'dao',
-      label: 'FARM $YAY',
+      label: '🌻 $YAY FARM',
       content: (
         <div>
           <h2>FARM $YAY WITH THE DAO</h2>
@@ -43,7 +43,7 @@ export default function ClaimPage() {
     },
     {
       id: 'discord',
-      label: 'DISCORD',
+      label: '👾 DISCORD',
       content: (
         <div>
           <h2>Join Discord</h2>

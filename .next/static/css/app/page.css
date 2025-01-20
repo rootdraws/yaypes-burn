@@ -79,7 +79,7 @@ body {
   cursor: pointer;
   color: #ffd700; /* Divine gold text */
   text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); /* Subtle gold glow */
-  font-size: 1.3rem;
+  font-size: 1.6rem;  /* Increased from 1.3rem */
   line-height: 1.5;
   min-height: 4rem;
   display: flex;
