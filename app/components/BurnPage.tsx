@@ -8,9 +8,9 @@ import '../styles/pixel-theme.css'
 
 // Contract configuration - replace with actual values
 const NFT_CONTRACT_ADDRESS = '0x...' // Replace with your actual NFT contract address
-const NFT_CONTRACT_ABI = [] // Replace with your actual NFT contract ABI
+const NFT_CONTRACT_ABI = [] as const // Replace with your actual NFT contract ABI
 const YAY_CONTRACT_ADDRESS = '0x...' // Replace with your actual YAY token contract address
-const YAY_CONTRACT_ABI = [] // Replace with your actual YAY token contract ABI
+const YAY_CONTRACT_ABI = [] as const // Replace with your actual YAY token contract ABI
 
 export default function BurnPage() {
   // State management for NFT selection and UI flow

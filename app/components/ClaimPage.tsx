@@ -3,64 +3,56 @@
 import React, { useState } from 'react'
 import { useAccount, useReadContract, useWriteContract, useSimulateContract } from 'wagmi'
 import '../styles/pixel-theme.css'
+import Button from './Button'
+import TabContainer from './TabContainer'
 
 const CONTRACT_ADDRESS = '0x...' // Replace with your actual contract address
 const CONTRACT_ABI = [] // Replace with your actual contract ABI
 
 export default function ClaimPage() {
-  // State for token ID input and user's wallet address
-  const [tokenId, setTokenId] = useState('')
-  const { address } = useAccount()
-
-  // Read the claimable token amount from the smart contract
-  const { data: claimableAmount } = useReadContract({
-    address: CONTRACT_ADDRESS,
-    abi: CONTRACT_ABI,
-    functionName: 'claimableAmount',
-    args: [address, tokenId],
-  }) as { data: bigint }
-
-  // Simulate the claim transaction to check for potential errors
-  const { data: simulateData } = useSimulateContract({
-    address: CONTRACT_ADDRESS,
-    abi: CONTRACT_ABI,
-    functionName: 'claim',
-    args: [tokenId],
-  })
-
-  // Hook to execute the claim transaction
-  const { writeContract, isPending, isSuccess } = useWriteContract()
-
-  // Handler for claim button click
-  const handleClaim = async () => {
-    if (simulateData?.request) {
-      await writeContract(simulateData.request)
+  const tabs = [
+    {
+      id: 'claim',
+      label: 'CLAIM $YAY',
+      content: (
+        <div>
+          <h2>Claim $YAY AIRDROP</h2>
+          <Button>Claim</Button>
+        </div>
+      )
+    },
+    {
+      id: 'burn',
+      label: 'BURN YAYPES',
+      content: (
+        <div>
+          <h2>Burn YAYPES, GET $YAY</h2>
+          <Button>Burn to Claim</Button>
+        </div>
+      )
+    },
+    {
+      id: 'dao',
+      label: 'FARM $YAY',
+      content: (
+        <div>
+          <h2>FARM $YAY WITH THE DAO</h2>
+          <Button>Join PARTYDAO</Button>
+        </div>
+      )
+    },
+    {
+      id: 'discord',
+      label: 'DISCORD',
+      content: (
+        <div>
+          <h2>Join Discord</h2>
+          <Button>Join Discord</Button>
+        </div>
+      )
     }
-  }
+  ];
 
-  return (
-    <div className="pixel-card">
-      <h1 className="pixel-title">Claim $YAY</h1>
-      <p className="mb-4">Check your claim and receive 1 $YAY per NFT you hold.</p>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Enter Token ID"
-          value={tokenId}
-          onChange={(e) => setTokenId(e.target.value)}
-          className="pixel-input w-full"
-        />
-      </div>
-      <p className="mb-4">Claimable amount: {claimableAmount ? claimableAmount.toString() : '0'} $YAY</p>
-      <button 
-        onClick={handleClaim}
-        disabled={!simulateData?.request || isPending}
-        className="pixel-button w-full"
-      >
-        {isPending ? 'Claiming...' : 'Claim $YAY'}
-      </button>
-      {isSuccess && <p className="mt-4 text-green-400">Claim successful!</p>}
-    </div>
-  )
+  return <TabContainer tabs={tabs} />;
 }
 

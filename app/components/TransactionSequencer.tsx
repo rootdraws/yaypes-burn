@@ -5,9 +5,61 @@ import { useWriteContract, useSimulateContract } from 'wagmi'
 import '../styles/pixel-theme.css'
 
 const NFT_CONTRACT_ADDRESS = '0x...' as `0x${string}` // Replace with your actual NFT contract address
-const NFT_CONTRACT_ABI = [] // Replace with your actual NFT contract ABI
-const YAY_CONTRACT_ADDRESS = '0x...' as `0x${string}` // Replace with your actual YAY token contract address
-const YAY_CONTRACT_ABI = [] // Replace with your actual YAY token contract ABI
+const YAY_CONTRACT_ADDRESS = '0x...' as `0x${string}` // Replace with your actual YAY contract address
+
+type NFTContractABI = [
+  {
+    name: "burn";
+    type: "function";
+    inputs: [{ name: "tokenId"; type: "uint256" }];
+    // Add other function definitions as needed
+  }
+]
+
+type YAYContractABI = [
+  {
+    name: "putNFTOnAltar";
+    type: "function";
+    inputs: [{ name: "tokenIds"; type: "uint256[]" }];
+  },
+  {
+    name: "meditate";
+    type: "function";
+    inputs: [];
+  },
+  {
+    name: "claimReward";
+    type: "function";
+    inputs: [];
+  }
+  // Add other function definitions as needed
+]
+
+const NFT_CONTRACT_ABI: NFTContractABI = [
+  {
+    name: "burn",
+    type: "function",
+    inputs: [{ name: "tokenId", type: "uint256" }]
+  }
+] as const
+
+const YAY_CONTRACT_ABI: YAYContractABI = [
+  {
+    name: "putNFTOnAltar",
+    type: "function",
+    inputs: [{ name: "tokenIds", type: "uint256[]" }]
+  },
+  {
+    name: "meditate",
+    type: "function",
+    inputs: []
+  },
+  {
+    name: "claimReward",
+    type: "function",
+    inputs: []
+  }
+] as const
 
 interface TransactionSequencerProps {
   selectedNFTs: number[]

@@ -1,0 +1,21 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+self["webpackHotUpdate_N_E"]("app/layout",{
+
+/***/ "(app-pages-browser)/./node_modules/next/font/local/target.css?{\"path\":\"app/layout.tsx\",\"import\":\"\",\"arguments\":[{\"src\":\"../public/fonts/MEK-Mono.woff2\",\"variable\":\"--font-mek-mono\"}],\"variableName\":\"pixelFont\"}":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/font/local/target.css?{"path":"app/layout.tsx","import":"","arguments":[{"src":"../public/fonts/MEK-Mono.woff2","variable":"--font-mek-mono"}],"variableName":"pixelFont"} ***!
+  \******************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval(__webpack_require__.ts("// extracted by mini-css-extract-plugin\nmodule.exports = {\"style\":{\"fontFamily\":\"'pixelFont', 'pixelFont Fallback'\"},\"className\":\"__className_579788\",\"variable\":\"__variable_579788\"};\n    if(true) {\n      // 1737340588093\n      var cssReload = __webpack_require__(/*! ./node_modules/next/dist/compiled/mini-css-extract-plugin/hmr/hotModuleReplacement.js */ \"(app-pages-browser)/./node_modules/next/dist/compiled/mini-css-extract-plugin/hmr/hotModuleReplacement.js\")(module.id, {\"publicPath\":\"/_next/\",\"esModule\":false,\"locals\":true});\n      module.hot.dispose(cssReload);\n      \n    }\n  //# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwcC1wYWdlcy1icm93c2VyKS8uL25vZGVfbW9kdWxlcy9uZXh0L2ZvbnQvbG9jYWwvdGFyZ2V0LmNzcz97XCJwYXRoXCI6XCJhcHAvbGF5b3V0LnRzeFwiLFwiaW1wb3J0XCI6XCJcIixcImFyZ3VtZW50c1wiOlt7XCJzcmNcIjpcIi4uL3B1YmxpYy9mb250cy9NRUstTW9uby53b2ZmMlwiLFwidmFyaWFibGVcIjpcIi0tZm9udC1tZWstbW9ub1wifV0sXCJ2YXJpYWJsZU5hbWVcIjpcInBpeGVsRm9udFwifSIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBLGtCQUFrQixTQUFTLGlEQUFpRDtBQUM1RSxPQUFPLElBQVU7QUFDakI7QUFDQSxzQkFBc0IsbUJBQU8sQ0FBQyx3TUFBbUgsY0FBYyxzREFBc0Q7QUFDck4sTUFBTSxVQUFVO0FBQ2hCO0FBQ0E7QUFDQSIsInNvdXJjZXMiOlsiL1VzZXJzL2t5bGVqYWNvYnMveWF5cGVzLWJ1cm4vbm9kZV9tb2R1bGVzL25leHQvZm9udC9sb2NhbC90YXJnZXQuY3NzP3tcInBhdGhcIjpcImFwcC9sYXlvdXQudHN4XCIsXCJpbXBvcnRcIjpcIlwiLFwiYXJndW1lbnRzXCI6W3tcInNyY1wiOlwiLi4vcHVibGljL2ZvbnRzL01FSy1Nb25vLndvZmYyXCIsXCJ2YXJpYWJsZVwiOlwiLS1mb250LW1lay1tb25vXCJ9XSxcInZhcmlhYmxlTmFtZVwiOlwicGl4ZWxGb250XCJ9Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxubW9kdWxlLmV4cG9ydHMgPSB7XCJzdHlsZVwiOntcImZvbnRGYW1pbHlcIjpcIidwaXhlbEZvbnQnLCAncGl4ZWxGb250IEZhbGxiYWNrJ1wifSxcImNsYXNzTmFtZVwiOlwiX19jbGFzc05hbWVfNTc5Nzg4XCIsXCJ2YXJpYWJsZVwiOlwiX192YXJpYWJsZV81Nzk3ODhcIn07XG4gICAgaWYobW9kdWxlLmhvdCkge1xuICAgICAgLy8gMTczNzM0MDU4ODA5M1xuICAgICAgdmFyIGNzc1JlbG9hZCA9IHJlcXVpcmUoXCIvVXNlcnMva3lsZWphY29icy95YXlwZXMtYnVybi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2NvbXBpbGVkL21pbmktY3NzLWV4dHJhY3QtcGx1Z2luL2htci9ob3RNb2R1bGVSZXBsYWNlbWVudC5qc1wiKShtb2R1bGUuaWQsIHtcInB1YmxpY1BhdGhcIjpcIi9fbmV4dC9cIixcImVzTW9kdWxlXCI6ZmFsc2UsXCJsb2NhbHNcIjp0cnVlfSk7XG4gICAgICBtb2R1bGUuaG90LmRpc3Bvc2UoY3NzUmVsb2FkKTtcbiAgICAgIFxuICAgIH1cbiAgIl0sIm5hbWVzIjpbXSwiaWdub3JlTGlzdCI6WzBdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(app-pages-browser)/./node_modules/next/font/local/target.css?{\"path\":\"app/layout.tsx\",\"import\":\"\",\"arguments\":[{\"src\":\"../public/fonts/MEK-Mono.woff2\",\"variable\":\"--font-mek-mono\"}],\"variableName\":\"pixelFont\"}\n"));
+
+/***/ })
+
+});
