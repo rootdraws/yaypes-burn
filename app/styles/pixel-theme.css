@@ -1,3 +1,4 @@
+/* Blinking animation that alternates opacity */
 @keyframes pixel-blink {
   0%,
   100% {
@@ -8,6 +9,7 @@
   }
 }
 
+/* Purple pixel-style button with hover effect */
 .pixel-button {
   display: inline-block;
   padding: 8px 16px;
@@ -20,11 +22,13 @@
   transition: all 0.1s ease;
 }
 
+/* Button hover state with pressed-in effect */
 .pixel-button:hover {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #4c1d95;
 }
 
+/* Dark themed card with pixel border and shadow */
 .pixel-card {
   background-color: #1f2937;
   border: 4px solid #4b5563;
@@ -33,6 +37,7 @@
   margin-bottom: 20px;
 }
 
+/* Dark themed form input field */
 .pixel-input {
   background-color: #374151;
   border: 2px solid #4b5563;
@@ -41,6 +46,7 @@
   font-family: inherit;
 }
 
+/* Custom styled checkbox with pixel appearance */
 .pixel-checkbox {
   appearance: none;
   width: 24px;
@@ -50,11 +56,13 @@
   cursor: pointer;
 }
 
+/* Purple background when checkbox is checked */
 .pixel-checkbox:checked {
   background-color: #8b5cf6;
   border-color: #7c3aed;
 }
 
+/* White checkmark symbol when checkbox is checked */
 .pixel-checkbox:checked::after {
   content: "✓";
   display: block;
@@ -64,6 +72,7 @@
   line-height: 24px;
 }
 
+/* Large purple title with shadow and blinking animation */
 .pixel-title {
   font-size: 36px;
   color: #8b5cf6;

@@ -14,9 +14,15 @@ interface TransactionSequencerProps {
 }
 
 export default function TransactionSequencer({ selectedNFTs }: TransactionSequencerProps) {
+  // Track current transaction step and modal visibility
   const [currentStep, setCurrentStep] = useState(0)
   const [isOpen, setIsOpen] = useState(true)
 
+  // Define the sequence of transactions to be executed
+  // 1. Put NFTs on altar
+  // 2. Burn each NFT individually
+  // 3. Meditate
+  // 4. Claim reward
   const steps = [
     { name: 'Put NFTs on Altar', contract: YAY_CONTRACT_ADDRESS, abi: YAY_CONTRACT_ABI, functionName: 'putNFTOnAltar', args: [selectedNFTs] },
     
@@ -25,6 +31,7 @@ export default function TransactionSequencer({ selectedNFTs }: TransactionSequen
     { name: 'Claim Reward', contract: YAY_CONTRACT_ADDRESS, abi: YAY_CONTRACT_ABI, functionName: 'claimReward', args: [] },
   ]
 
+  // Simulate the current transaction step before execution
   const { data: simulateData } = useSimulateContract({
     address: steps[currentStep].contract as `0x${string}`,
     abi: steps[currentStep].abi,
@@ -32,14 +39,17 @@ export default function TransactionSequencer({ selectedNFTs }: TransactionSequen
     args: steps[currentStep].args,
   })
 
+  // Hook to execute the actual transaction
   const { writeContract, isPending, isSuccess } = useWriteContract()
 
+  // Automatically advance to next step when current transaction succeeds
   useEffect(() => {
     if (isSuccess && currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1)
     }
   }, [isSuccess, currentStep])
 
+  // Close the modal 2 seconds after all steps are completed
   useEffect(() => {
     if (currentStep === steps.length) {
       setTimeout(() => setIsOpen(false), 2000)

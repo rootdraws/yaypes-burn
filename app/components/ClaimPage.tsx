@@ -8,9 +8,11 @@ const CONTRACT_ADDRESS = '0x...' // Replace with your actual contract address
 const CONTRACT_ABI = [] // Replace with your actual contract ABI
 
 export default function ClaimPage() {
+  // State for token ID input and user's wallet address
   const [tokenId, setTokenId] = useState('')
   const { address } = useAccount()
 
+  // Read the claimable token amount from the smart contract
   const { data: claimableAmount } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
@@ -18,6 +20,7 @@ export default function ClaimPage() {
     args: [address, tokenId],
   }) as { data: bigint }
 
+  // Simulate the claim transaction to check for potential errors
   const { data: simulateData } = useSimulateContract({
     address: CONTRACT_ADDRESS,
     abi: CONTRACT_ABI,
@@ -25,8 +28,10 @@ export default function ClaimPage() {
     args: [tokenId],
   })
 
+  // Hook to execute the claim transaction
   const { writeContract, isPending, isSuccess } = useWriteContract()
 
+  // Handler for claim button click
   const handleClaim = async () => {
     if (simulateData?.request) {
       await writeContract(simulateData.request)
